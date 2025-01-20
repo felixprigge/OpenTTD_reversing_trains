@@ -45,6 +45,7 @@ const SaveLoadCompat _settings_sl_compat[] = {
 	SLC_VAR("difficulty.quantity_sea_lakes"),
 	SLC_VAR("difficulty.economy"),
 	SLC_VAR("difficulty.line_reverse_mode"),
+	SLC_VAR("difficulty.enable_train_reverse"),
 	SLC_VAR("difficulty.disasters"),
 	SLC_VAR("difficulty.town_council_tolerance"),
 	SLC_VAR("diff_level"),

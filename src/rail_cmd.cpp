@@ -2959,7 +2959,7 @@ static VehicleEnterTileStatus VehicleEnter_Track(Vehicle *u, TileIndex tile, int
 
 		if (fract_coord_leave == fract_coord) {
 			/* Leave the depot. */
-			if ((v = v->Next()) != nullptr) {
+			if ((v = v->Behind()) != nullptr) {
 				v->vehstatus &= ~VS_HIDDEN;
 				v->track = (DiagDirToAxis(dir) == AXIS_X ? TRACK_BIT_X : TRACK_BIT_Y);
 			}
@@ -2970,7 +2970,7 @@ static VehicleEnterTileStatus VehicleEnter_Track(Vehicle *u, TileIndex tile, int
 		v->track = TRACK_BIT_DEPOT,
 		v->vehstatus |= VS_HIDDEN;
 		v->direction = ReverseDir(v->direction);
-		if (v->Next() == nullptr) VehicleEnterDepot(v->First());
+		if (v->Behind() == nullptr) VehicleEnterDepot(v->First());
 		v->tile = tile;
 
 		InvalidateWindowData(WC_VEHICLE_DEPOT, v->tile);

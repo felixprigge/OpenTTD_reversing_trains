@@ -289,8 +289,8 @@ PBSTileInfo FollowTrainReservation(const Train *v, Vehicle **train_on_res)
 {
 	assert(v->type == VEH_TRAIN);
 
-	TileIndex tile = v->tile;
-	Trackdir  trackdir = v->GetVehicleTrackdir();
+	TileIndex tile = v->Front()->tile;
+	Trackdir  trackdir = v->Front()->GetVehicleTrackdir();
 
 	if (IsRailDepotTile(tile) && !GetDepotReservationTrackBits(tile)) return PBSTileInfo(tile, trackdir, false);
 
@@ -299,7 +299,7 @@ PBSTileInfo FollowTrainReservation(const Train *v, Vehicle **train_on_res)
 	ftoti.res.okay = IsSafeWaitingPosition(v, ftoti.res.tile, ftoti.res.trackdir, true, _settings_game.pf.forbid_90_deg);
 	if (train_on_res != nullptr) {
 		FindVehicleOnPos(ftoti.res.tile, &ftoti, FindTrainOnTrackEnum);
-		if (ftoti.best != nullptr) *train_on_res = ftoti.best->First();
+		if (ftoti.best != nullptr) *train_on_res = ftoti.best->Front();
 		if (*train_on_res == nullptr && IsRailStationTile(ftoti.res.tile)) {
 			/* The target tile is a rail station. The track follower
 			 * has stopped on the last platform tile where we haven't
